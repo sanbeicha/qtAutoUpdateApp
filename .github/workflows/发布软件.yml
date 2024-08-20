@@ -9,7 +9,7 @@ on:
 permissions: write-all # 给所有工作写权限
 
 jobs:
-  jobs_v:
+  jobs_version:
     name: 构建版本号和变更信息
     runs-on: ubuntu-latest
     outputs:
@@ -28,12 +28,12 @@ jobs:
           echo ${{ format('version={0}', steps.create_version.outputs.tag_name ) }} 
 
   jobs_window:
-    needs: jobs_v # 等待 jobs_v 任务完成才执行
+    needs: jobs_version # 等待 jobs_version 任务完成才执行
     name: 构建window软件
     runs-on: windows-2022
     env:
-      version: ${{ needs.jobs_v.outputs.version }}
-      body: ${{ needs.jobs_v.outputs.body }}
+      version: ${{ needs.jobs_version.outputs.version }}
+      body: ${{ needs.jobs_version.outputs.body }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -44,7 +44,7 @@ jobs:
       - name: 编译环境设置 Python 3.12.5
         uses: actions/setup-python@v5
         with:
-          python-version: "3.9.13"
+          python-version: "3.12.5"
           architecture: "x64"
           cache: 'pip'
       - name: 下载依赖文件
@@ -66,12 +66,12 @@ jobs:
           path: ./dist/*.exe
 
   jobs_macos:
-    needs: jobs_v
+    needs: jobs_version
     name: 构建macos软件
     runs-on: macos-12
     env:
-      version: ${{ needs.jobs_v.outputs.version }}
-      body: ${{ needs.jobs_v.outputs.body }}
+      version: ${{ needs.jobs_version.outputs.version }}
+      body: ${{ needs.jobs_version.outputs.body }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -82,7 +82,7 @@ jobs:
       - name: 编译环境设置 Python 3.12.5
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9.13"
+          python-version: "3.12.5"
           architecture: "x64"
           cache: 'pip'
       - name: 下载依赖文件
@@ -109,12 +109,12 @@ jobs:
 
 
   jobs4:
-    needs: [ jobs_v,jobs_window,jobs_macos ]
+    needs: [ jobs_version,jobs_window,jobs_macos ]
     name: 发布版本
     runs-on: ubuntu-latest
     env:
-      version: ${{ needs.jobs_v.outputs.version }}
-      body: ${{ needs.jobs_v.outputs.body }}
+      version: ${{ needs.jobs_version.outputs.version }}
+      body: ${{ needs.jobs_version.outputs.body }}
     steps:
       - name: 下载产物
         id: download
