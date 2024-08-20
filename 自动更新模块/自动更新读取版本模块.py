@@ -6,20 +6,13 @@ import requests
 
 def 获取最新版本号和下载地址(project_name):
     # 通过访问最新的页面 获取版本号和下载地址和更新内容
-    # https://github.com/duolabmeng6/qtAutoUpdateApp/releases/latest
     # 镜像地址也可以自己造一个 https://quiet-boat-a038.duolabmeng.workers.dev/
-    #https://github.com/duolabmeng6/qoq/releases/expanded_assets/v0.1.5
     # url = f"https://ghproxy.com/https://github.com/{project_name}/releases/latest"
     url = f"https://github.com/{project_name}/releases/latest"
     # print(url)
     jsondata = requests.get(url)
 
-
-    # 写出文件
-    # with open('test.html', "w", encoding="utf-8") as f:
-    #     f.write(jsondata.text)
-    # 获取版本号
-    return 解析网页信息(jsondata.text,project_name)
+    return 解析网页信息(jsondata.text, project_name)
 
 
 def 解析网页信息(网页, project_name):
@@ -53,7 +46,6 @@ def 解析网页信息(网页, project_name):
     mac下载地址 = ""
     win下载地址 = ""
     # 重新重新访问页面
-    # https://github.com/duolabmeng6/qoq/releases/expanded_assets/v0.1.5
     # url = f"https://ghproxy.com/https://github.com/{project_name}/releases/expanded_assets/{版本号}"
     url = f"https://github.com/{project_name}/releases/expanded_assets/{版本号}"
     网页2 = requests.get(url).text
