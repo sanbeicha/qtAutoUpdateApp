@@ -35,7 +35,7 @@ jobs:
       version: ${{ needs.jobs_version.outputs.version }}
       body: ${{ needs.jobs_version.outputs.body }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: 读入环境信息
@@ -73,14 +73,14 @@ jobs:
       version: ${{ needs.jobs_version.outputs.version }}
       body: ${{ needs.jobs_version.outputs.body }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: 读入环境信息
         run: |
           echo ${{ format('version {0}', env.version ) }}
       - name: 编译环境设置 Python 3.12.5
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12.5"
           architecture: "x64"
