@@ -54,9 +54,6 @@ def 获取最新版本号和下载地址(project_name):
     # with open('test.html', "w", encoding="utf-8") as f:
     #     f.write(jsondata.text)
     # 获取版本号
-
-
-
     return 解析网页信息(jsondata.text,project_name)
 
 
@@ -142,7 +139,7 @@ def 解析网页信息(网页,project_name):
 
 # 测试
 if __name__ == '__main__':
-    data = 获取最新版本号和下载地址("duolabmeng6/qoq2")
+    data = 获取最新版本号和下载地址("sanbeicha/qtAutoUpdateApp")
     print(data)
     # data = 解析网页信息("")
     # print(data)

@@ -182,7 +182,7 @@ class 下载文件线程类(QThread):
 
 
 class 检查更新线程(QThread):
-    def __init__(self, Github项目名称="duolabmeng6/qtAutoUpdateApp", 回调函数=None):
+    def __init__(self, Github项目名称="sanbeicha/qtAutoUpdateApp", 回调函数=None):
         super(检查更新线程, self).__init__()
         # 绑定线程开始事件
         self.started.connect(self.ui_开始)
