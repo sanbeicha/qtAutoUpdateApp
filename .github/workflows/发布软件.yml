@@ -41,8 +41,8 @@ jobs:
       - name: 读入环境信息
         run: |
           echo ${{ format('version {0}', env.version ) }} # 版本号
-      - name: 编译环境设置 Python 3.9.13
-        uses: actions/setup-python@v4
+      - name: 编译环境设置 Python 3.12.5
+        uses: actions/setup-python@v5
         with:
           python-version: "3.9.13"
           architecture: "x64"
@@ -60,7 +60,7 @@ jobs:
           contains: app run success
           expected_result: PASSED
       - name: 上传产物
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: window
           path: ./dist/*.exe
@@ -79,7 +79,7 @@ jobs:
       - name: 读入环境信息
         run: |
           echo ${{ format('version {0}', env.version ) }}
-      - name: 编译环境设置 Python 3.9.13
+      - name: 编译环境设置 Python 3.12.5
         uses: actions/setup-python@v4
         with:
           python-version: "3.9.13"
@@ -102,7 +102,7 @@ jobs:
           cd ./dist
           zip -r ./my_app_MacOS.zip ./my_app.app
       - name: 上传产物
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: macos
           path: ./dist/*.zip
@@ -118,7 +118,7 @@ jobs:
     steps:
       - name: 下载产物
         id: download
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: ./
       - name: 读入环境信息
