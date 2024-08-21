@@ -77,3 +77,4 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     win = Main()
     sys.exit(app.exec())
+
