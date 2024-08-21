@@ -23,7 +23,7 @@ version-resolver:
       - 'patch'
   default: patch
 template: |
-  # 自动更新程序
+  # 更新程序
   * 更新了自动构建
   * 自动获取版本
   * 自动下载
