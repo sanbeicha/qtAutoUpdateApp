@@ -12,8 +12,8 @@ from . import ui_winUpdate
 class 窗口_更新软件(QDialog):
     允许关闭 = False
 
-    def __init__(self, Github项目名称="duolabmeng6/qtAutoUpdateApp", 应用名称="my_app.app", 当前版本号="1.0",
-                 官方网址="https://github.com/duolabmeng6/qtAutoUpdateApp"):
+    def __init__(self, Github项目名称="sanbeicha/qtAutoUpdateApp", 应用名称="my_app.app", 当前版本号="1.0",
+                 官方网址="https://github.com/sanbeicha/qtAutoUpdateApp"):
         super(窗口_更新软件, self).__init__()
         self.ui = ui_winUpdate.Ui_Form()
         self.ui.setupUi(self)

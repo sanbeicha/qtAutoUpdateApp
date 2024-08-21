@@ -4,7 +4,7 @@ import sys
 from PySide6.QtWidgets import QWidget, QLabel, QTextEdit, QVBoxLayout, QApplication, QMainWindow, QPushButton
 
 import version
-import 自动更新模块
+import src.自动更新模块 as 自动更新模块
 
 全局_项目名称 = "sanbeicha/qtAutoUpdateApp"
 全局_应用名称 = "my_app.app"
