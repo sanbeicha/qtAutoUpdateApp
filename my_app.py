@@ -39,14 +39,19 @@ class Main(QMainWindow):
         self.按钮_检查更新.show()
 
         self.label = QLabel(self.main_widget)
-        self.label.setText(f'当前版本:{全局_当前版本}')
+        self.label.setText(f'当前版本: {全局_当前版本}')
         self.label.resize(160, 100)
         self.label.show()
 
         self.label2 = QLabel(self.main_widget)
-        self.label2.setText(f'最新版本:查询中')
+        self.label2.setText(f'最新版本: 查询中')
         self.label2.resize(160, 100)
         self.label2.show()
+        
+        self.label3 = QLabel(self.main_widget)
+        self.label3.setText(f'发布时间: 查询中')
+        self.label3.resize(160, 100)
+        self.label3.show()
 
         # 编辑框
         self.textEdit = QTextEdit(self.main_widget)
@@ -58,6 +63,7 @@ class Main(QMainWindow):
         self.layout.addWidget(self.按钮_检查更新)
         self.layout.addWidget(self.label)
         self.layout.addWidget(self.label2)
+        self.layout.addWidget(self.label3)
         self.layout.addWidget(self.textEdit, 1)
         self.setCentralWidget(self.main_widget)
 
@@ -65,10 +71,12 @@ class Main(QMainWindow):
         self.检查更新线程.start()
 
     def 检查更新回到回调函数(self, 数据):
-        print("数据", 数据)
+        # print("数据", 数据)
         最新版本 = 数据['版本号']
-        self.label2.setText(f'最新版本:{最新版本}')
-        self.textEdit.setText(json.dumps(数据, indent=4, ensure_ascii=False))
+        self.label2.setText(f'最新版本: {最新版本}')
+        self.label3.setText(f"发布时间: {数据['发布时间']}")
+        self.textEdit.setHtml(数据['更新内容'])
+        # self.textEdit.setText(json.dumps(数据, indent=4, ensure_ascii=False))
 
 
 if __name__ == '__main__':
