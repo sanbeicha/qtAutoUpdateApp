@@ -86,8 +86,8 @@ class 窗口_更新软件(QDialog):
         self.ui.label_zt.setText('更新中...')
         self.ui.pushButton_azgx.setEnabled(False)
         self.ui.pushButton_tgbb.setEnabled(False)
-        print('mac下载地址', self.mac下载地址)
-        print('win下载地址', self.win下载地址)
+        # print('mac下载地址', self.mac下载地址)
+        # print('win下载地址', self.win下载地址)
 
         if 系统_是否为mac系统():
             if self.mac下载地址 == "":
@@ -137,5 +137,5 @@ class 窗口_更新软件(QDialog):
 
     def 打开官方网址(self):
         # 浏览器打开网址
-        print('官方网址', self.官方网址)
+        # print('官方网址', self.官方网址)
         webbrowser.open(self.官方网址)
