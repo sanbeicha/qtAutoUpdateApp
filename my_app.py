@@ -72,7 +72,7 @@ class Main(QMainWindow):
 
     def 检查更新回到回调函数(self, 数据):
         # print("数据", 数据)
-        最新版本 = 数据['版本号'][1:]
+        最新版本 = 数据['版本号']
         self.label2.setText(f'最新版本: {最新版本}')
         self.label3.setText(f"发布时间: {数据['发布时间']}")
         self.textEdit.setHtml(数据['更新内容'])
