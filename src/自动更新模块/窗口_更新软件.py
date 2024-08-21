@@ -62,8 +62,8 @@ class 窗口_更新软件(QDialog):
 
     def 检查更新回到回调函数(self, 数据):
         print("数据", 数据)
-        最新版本 = 数据['版本号']
-        self.ui.label_bbh.setText(f'最新版本:{最新版本} 当前版本: {self.当前版本号}')
+        最新版本 = 数据['版本号'][1:]
+        self.ui.label_bbh.setText(f'最新版本: {最新版本} 当前版本: {self.当前版本号}')
         self.ui.textEdit.setHtml(数据['更新内容'])
         self.mac下载地址 = 数据['mac下载地址']
         self.win下载地址 = 数据['win下载地址']
