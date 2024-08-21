@@ -4,9 +4,9 @@ categories:
   - title: '🚀 新功能'
     labels:
       - '新功能'
-  - title: '🐛 Bug 修复'
+  - title: '🐛 修Bug'
     labels:
-      - 'bug'
+      - '修bug'
   - title: '🧰 日常维护'
     label: '日常维护'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
