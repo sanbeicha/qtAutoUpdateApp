@@ -8,7 +8,8 @@ def 获取最新版本号和下载地址(project_name):
     # 通过访问最新的页面 获取版本号和下载地址和更新内容
     # 镜像地址也可以自己造一个 https://quiet-boat-a038.duolabmeng.workers.dev/
     # url = f"https://ghproxy.com/https://github.com/{project_name}/releases/latest"
-    url = f"https://github.com/{project_name}/releases/latest"
+    # url = f"https://github.com/{project_name}/releases/latest"
+    url = f"https://mirror.ghproxy.com/https://github.com/{project_name}/releases/latest"
     # print(url)
     jsondata = requests.get(url)
 
@@ -42,14 +43,16 @@ def 解析网页信息(网页, project_name):
     #
     #             </a>
 
+    # 重新重新访问页面
+    # url = f"https://ghproxy.com/https://github.com/{project_name}/releases/expanded_assets/{版本号}"
+    # url = f"https://github.com/{project_name}/releases/expanded_assets/{版本号}"
+    url = f"https://mirror.ghproxy.com/https://github.com/{project_name}/releases/expanded_assets/{版本号}"
+    网页2 = requests.get(url).text
+
+    
     下载地址列表 = []
     mac下载地址 = ""
     win下载地址 = ""
-    # 重新重新访问页面
-    # url = f"https://ghproxy.com/https://github.com/{project_name}/releases/expanded_assets/{版本号}"
-    url = f"https://github.com/{project_name}/releases/expanded_assets/{版本号}"
-    网页2 = requests.get(url).text
-
     pattern = re.compile( r'class="Truncate-text text-bold">(.*?)</span>' )
     result = pattern.findall(网页2)
     # print(result)
@@ -57,7 +60,9 @@ def 解析网页信息(网页, project_name):
         # print(item)
         下载地址 = item
         # 下载地址 = f"https://ghproxy.com/https://github.com/{project_name}/releases/download/{版本号}/{下载地址}"
-        下载地址 = f"https://github.com/{project_name}/releases/download/{版本号}/{下载地址}"
+        # 下载地址 = f"https://github.com/{project_name}/releases/download/{版本号}/{下载地址}"
+        下载地址 = f"https://mirror.ghproxy.com/https://github.com/{project_name}/releases/download/{版本号}/{下载地址}"
+
         文件名 = item
         if 文件名.find('Source code') != -1:
             continue
@@ -69,16 +74,15 @@ def 解析网页信息(网页, project_name):
         if 文件名.find('.exe') != -1:
             win下载地址 = 下载地址
 
-
     # print(下载地址列表)
-
     # 获取发布时间
     # <relative-time datetime="2022-07-22T17:32:41Z" class="no-wrap"></relative-time>
     发布时间 = 网页2.find('<relative-time datetime="')
     发布时间 = 网页2[发布时间 + len('<relative-time datetime="'):]
-    发布时间 = 发布时间[:发布时间.find('"')]
+    发布时间 = 发布时间[:10]
     # 去掉 t z
-    发布时间 = 发布时间.replace("T", " ").replace("Z", "")
+    # 发布时间 = 发布时间.replace("T", " ").replace("Z", "")
+    
 
     # 版本号大于20个字符就清空
     if len(版本号) > 20:
@@ -88,9 +92,9 @@ def 解析网页信息(网页, project_name):
 
     return {
         "版本号": 版本号,
-        "下载地址列表": 下载地址列表,
-        "更新内容": 更新内容,
         "发布时间": 发布时间,
+        "更新内容": 更新内容,
+        "下载地址列表": 下载地址列表,
         "mac下载地址": mac下载地址,
         "win下载地址": win下载地址,
     }
